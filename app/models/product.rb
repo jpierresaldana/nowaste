@@ -9,13 +9,13 @@ class Product < ApplicationRecord
 
   # SE AGREGO PARA EL SEARCH DEL NAVBAR
 
-  include PgSearch::Model
-  pg_search_scope :search_products, against: %i[name description],
-    using: {
-      tsearch: {
-        prefix: true
-      }
-    }
+  # include PgSearch::Model
+  # pg_search_scope :search_products, against: %i[name description],
+  #  using: {
+  #    tsearch: {
+  #      prefix: true
+  #    }
+  #  }
 
   # validar que todos lo campos no esten vacios al crear
   validates :name, :original_price, :discount, :stock, :description, :photos, presence: true
