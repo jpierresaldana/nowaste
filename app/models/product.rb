@@ -18,15 +18,15 @@ class Product < ApplicationRecord
   #  }
 
   # validar que todos lo campos no esten vacios al crear
-  validates :name, :original_price, :discount, :stock, :description, :photos, presence: true
+  validates :name, :old_price, :discount, :stock, :description, :photos, presence: true
 
   # validacion para :name
   validates :name, length: { minimum: 10, message: "Debe de tener más de 10 caracteres" }
 
-  # validacion para :original_price
-  validates :original_price, numericality: { only_float: true, message: "Tiene que ser número" }
-  validates :original_price, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9999 }
-  # validates :original_price, format: { with: /[0-9]*/, message: "solo numeros" }
+  # validacion para :old_price
+  validates :old_price, numericality: { only_float: true, message: "Tiene que ser número" }
+  validates :old_price, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 9999 }
+  # validates :old_price, format: { with: /[0-9]*/, message: "solo numeros" }
 
   # validacion para :discount
   validates :discount, numericality: { only_integer: true }
@@ -43,7 +43,7 @@ class Product < ApplicationRecord
 
   def actualiza_descuento
     self.price = (
-      self.original_price - (self.original_price * self.discount) / 100
+      self.old_price - (self.old_price * self.discount) / 100
     )
   end
 end
