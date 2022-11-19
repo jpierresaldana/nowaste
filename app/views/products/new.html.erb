@@ -1,0 +1,53 @@
+<div class="container py-5">
+  <div class="container pt-5">
+    <div class="container pt-4">
+      <div class="container-pro-new">
+        <div class="row">
+          <div class="col-6">
+            <h1 class="text-center pt-2 pb-2"><strong> Registro de Producto </strong></h1>
+              <%= simple_form_for (@product) do |f| %>
+                <div class="row">
+                  <%# current_user.ruc.empty? %>
+                  <div class="col-12 col-lg-6 pt-3 ">
+                    <%= f.association :category, label: "Categoria del Producto:", prompt: "Categoría del Producto" %>
+                  </div>
+                  <div class="col-12 col-lg-6 pt-3">
+                    <%= f.input :name, label: "Nombre del Producto:", placeholder: "Nombre del producto", required: true %>
+                  </div>
+                  <div class="col-12 col-lg-6 ">
+                    <%= f.input :original_price, as: :string, label: "Precio Real del Producto:", placeholder: "Precio original del producto", required: true %>
+                  </div>
+                  <div class="col-12 col-lg-6 ">
+                    <%= f.input :discount, as: :string, label: "Descuento del Producto:", placeholder: "Descuento del producto", required: true %>
+                  </div>
+                  <div class="col-12 col-lg-6 ">
+                    <%= f.input :stock, as: :string, label: "Stock del Producto:", placeholder: "Stock del Producto", required: true %>
+                  </div>
+                  <div class="col-12 col-lg-6 ">
+                    <%= f.input :expiration_date, html5: true, label: "Fecha de Expiración:" %>
+                  </div>
+                </div>
+                <div class="">
+                  <%= f.input :description, label: "Descripción del Producto:",
+                  placeholder: "Descripcion del producto", required: true %>
+                </div>
+                <div class="">
+                  <%= f.input :photos, label: "Imagen a cargar", as: :file,
+                  input_html: { multiple: true }, required: true %>
+                </div>
+                <div class="d-flex justify-content-around pt-3 pb-5">
+                  <%= f.submit "Enviar", class: "btn btn-ghost pb-3" %>
+                  <%= link_to "Salir", products_path, class: "btn btn-ghost" %>
+                </div>
+              <% end %>
+          </div>
+          <div class="col-6">
+            <div class="">
+              <%= image_tag "pla_net.jpeg", class:"imagen-pro-new" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

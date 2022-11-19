@@ -1,0 +1,55 @@
+<div class="container py-5 mt-3">
+  <div class="container py-5">
+    <div class="card-product-show">
+      <% @product.photos.last(1).each do |photo| %>
+        <%= cl_image_tag photo.key, crop: :pad, class: "imagen-show mt-4"%>
+      <% end %>
+      <div class="card-product-infos-pro pe-5 w-80">
+        <div class="label-stock">
+          <% if @product.stock >=1 || @product.stock  < 15 %>
+                Últimas <%= @product.stock %> Unds.
+          <% elsif @product.stock > 15  %>
+            <%= @product.stock %> Unds. Disponibles.
+          <% else %>
+            Sin Stock.
+          <% end %>
+        </div>
+        <h1><%= @product.name %></h1>
+        <h2><%= @product.description %></h2>
+        <% if @product.expiration_date.present? %>
+          <h3>Vencimiento: <strong><%= @product.expiration_date %></strong></h3>
+        <% else %>
+          <h3> <br> </h3>
+        <% end %>
+          <div class="d-flex justify-content-between align-items-end">
+            <div>
+              <h4> <%= number_to_currency(@product.original_price) %></h4>
+              <h5> <%= number_to_currency(@product.price) %> </h5>
+            </div>
+            <div>
+              <h6 class="badge rounded-pill"> -<%= @product.discount %>% </h6>
+            </div>
+          </div>
+          <p class="py-3 pb-3"> <span class="badge rounded-pill text-bg-warning">!</span>
+            Este producto puede presentar defectos en su presentación,
+            sin embargo su calidad y funcionalidad no se ven afectadas.</p>
+          <div class="text-center">
+            <% if user_signed_in? && current_user.id == @product.user_id %>
+              <%= link_to "Editar", edit_product_path(@product), class: "btn btn-ghost" %>
+              <%= link_to "Eliminar", product_path(@product), class: "btn btn-ghost",
+              data: {turbo_method: :delete, turbo_confirm: "¿Estás seguro de eliminar el producto?"} %>
+            <% else %>
+              <% if @product.stock.to_i > 0 %>
+                <%= form_tag line_items_path do %>
+                  <%= hidden_field_tag 'product_id', @product.id %>
+                  <%= hidden_field_tag 'current_cart_id', @current_cart.id %>
+                  <%= submit_tag 'Agregar', class: "btn btn-ghost" %>
+                <% end %>
+              <% else %>
+                <%= link_to "Ver otros productos", root_path, class: "btn btn-ghost" %>
+              <% end %>
+              <%#= link_to "Comprar", cart_path(@current_cart), class: "btn btn-ghost" %>
+            <% end %>
+          </div>
+  </div>
+</div><br>
