@@ -1,0 +1,135 @@
+<div class="contenedor-order-main py-5">
+  <div class="container py-4">
+    <div class="d-flex justify-content-around py-5">
+      <div class=" py-5">
+        <div class="row ">
+          <div class="col-6">
+            <div class="contenedor-new-ord py-5 mx-3">
+              <div class="col-12 mx-3">
+                <div class="mx-3"> <%# Resumen Compra %>
+                  <h2 class="text-center pt-2 pb-2"><strong> Datos compra </strong></h2>
+                  <% if current_user.first_name.nil? && current_user.last_name.nil? %>
+                    <h5 class="pt-2 pb-2"> <strong>Nombre:</strong> </h5>
+                    <h5 class="px-3 pt-2 pb-2"> - <%= link_to "Falta actualizar datos", "/users/edit" %>  </h5>
+                  <% else %>
+                    <h5 class="pt-2 pb-2"> <strong>Nombre:</strong> </h5>
+                    <h5 class="text-uppercase px-3"> - <%= current_user.first_name.upcase  %> <%= current_user.last_name.upcase %> </h5>
+                  <% end %>
+                  <% if current_user.address.nil? %>
+                    <h5 class="pt-2 pb-2"> <strong>Direccion:</strong> </h5>
+                    <h5 class="px-3 pt-2 pb-2"> - <%= link_to "Falta actualizar datos", "/users/edit" %> </h5>
+                  <% else %>
+                    <h5 class="pt-2 pb-2"> <strong>Direccion:</strong> </h5>
+                    <h5 class="px-3 pt-2 pb-2"> - <%= current_user.address.upcase %> , <%= current_user.city.upcase %> </h5>
+                  <% end %>
+                    <h5 class="pt-2 pb-3"> <strong>Email: </strong> </h5>
+                    <h5 class="px-3 pt-2 pb-2"> - <%= current_user.email.upcase %> </h5>
+                  <div>
+                  <hr class="pb-1">
+                    <div class="py-2">
+                      <h5 class="text-end-new"> Subtotal
+                        <%= number_to_currency(@current_cart.sub_total) %>
+                      </h5>
+                    </div>
+                    <div class="py-2">
+                      <h5 class="text-end-new">Envio $ 10.00</h5>
+                    </div>
+                    <hr class="pb-1">
+                    <div class="py-1">
+                      <h5 class="text-end-new"> Total
+                        <%= number_to_currency(@current_cart.sub_total + 10.00) %>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-6">
+            <div class="contenedor-new-ord py-5 mx-3">
+                <div class="col-10 justify-content-around mx-5">
+                  <div> <%# Medio de Pago %>
+                    <h2 class="text-center pt-1 pb-4"><strong> Pago con tarjeta</strong></h2>
+                    <section>
+                      <div class="row">
+                        <div class="col-12 col-lg-12">
+                          <div class="card mb-1">
+                            <div class="card-header py-2 pb-2"> <h5 class="mb-0">Detalle de la cuenta</h5>
+                            </div>
+                            <div class="card-body">
+                              <form>
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-1">
+                                  <div class="col-12 col-lg-6">
+                                    <div class="form-outline py-2">
+                                      <input type="text" id="form6Example1" class="form-control" />
+                                      <label class="form-label" for="form6Example1">Nombre</label>
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <div class="form-outline py-2">
+                                      <input type="text" id="form6Example2" class="form-control" />
+                                      <label class="form-label" for="form6Example2">Apellido</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Email input -->
+                                <div class="form-outline mb-1">
+                                  <input type="email" id="form6Example5" class="form-control" />
+                                  <label class="form-label" for="form6Example5">Correo Electrónico</label>
+                                </div>
+                                <div class="row mb-1">
+                                  <div class="col">
+                                    <div class="form-outline">
+                                      <input type="text" id="formNameOnCard" class="form-control" />
+                                      <label class="form-label" for="formNameOnCard">Nombre del titular TC</label>
+                                    </div>
+                                  </div>
+                                  <div class="col">
+                                    <div class="form-outline">
+                                      <input type="text" id="formCardNumber" class="form-control" />
+                                      <label class="form-label" for="formCardNumber">Numero tarjeta</label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mb-4">
+                                  <div class="col-6">
+                                    <div class="form-outline">
+                                      <input type="text" id="formExpiration" class="form-control" />
+                                      <label class="form-label" for="formExpiration">Expiración</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-6">
+                                    <div class="form-outline">
+                                      <input type="text" id="formCVV" class="form-control" />
+                                      <label class="form-label" for="formCVV">CVV</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              </form>
+                              <%= simple_form_for (@order) do |f| %>
+                                <div class="row py-0">
+                                  <div class="d-flex justify-content-around pt-1 pb-2">
+                                    <%= f.hidden_field :name, :value => current_user.first_name %>
+                                    <%= f.submit "Enviar", class: "btn btn-ghost" %>
+                                  </div>
+                              <% end %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <%# col 12 general %>
+        </div>
+      </div> <%# row MAIN %>
+    </div> <%# container MAIN %>
+  </div> <%# container MAIN %>
+</div> <%# container MAIN %>

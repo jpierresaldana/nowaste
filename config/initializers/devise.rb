@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'b33b9a0488f86e4ecf1a34a6274aeef7db9068647a7e27cef40bb8d0ec017aefb92a49e33c890d39d347497e989fb94e23cbfddebac762dac9181c23ef51a6c3'
+  # config.secret_key = '4cb7eed6dc583989e68082d42c0f9a7bf258e20d54ba7b58600428b2f3864cae33d1b1c265ceb558a75a0a0d2a3a5791ba632cc552d4485b1ac598399c2bf0aa'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'fcastillolarriviere@gmail.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'c9de56e2f045098ac9390b1f989a5b725a30dde83b155eaf35f5185d4362b5d54f5619faa5459fd51db3cac644ee131b3e527fbfaa46027c623d80c226e13298'
+  # config.pepper = '27bd208833c396f8badcd3f5de3a99db841a85cdb3de3971c064c87b1e45ccd81e43f2955964a3027ea7c7b6b3c470e4e70aff20d18dc8e69cb13bfbaba08466'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -271,7 +271,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :google_oauth2, ENV['GOOGLE_OAUTH_CLIENT_ID'], ENV['GOOGLE_OAUTH_CLIENT_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

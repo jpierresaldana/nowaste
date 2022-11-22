@@ -1,20 +1,55 @@
-<h2>Log in</h2>
+<div class="container container-padding">
+  <div class="row">
+    <div class="col-6">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="container container-padding py-5">
+<h2 class="pb-5 text-center"><strong>INICIAR SESIÓN</strong></h2>
+
+
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
+    <div class="form-inputs">
+      <%= f.input :email, label: "Correo electrónico",
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+      <%= f.input :password, label: "Contraseña",
+                  required: false,
+                  input_html: { autocomplete: "current-password" } %>
+      <%= f.input :remember_me, label: "recuérdame", as: :boolean if devise_mapping.rememberable? %>
+    </div>
+
+  <div class="row">
+      <div class="form-actions text-center">
+        <%= f.button :submit, "Ingresar", class:"btn btn-ghost-devise mt-1" %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
+<div class="text-center pb-4">
+  <h5 class="py-2 my-2">o</h5>
+  <%- if devise_mapping.omniauthable? %>
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= button_to user_google_oauth2_omniauth_authorize_path, class: " google bg-white", method: :post, data: {turbo: "false"} do %>
+          <%= image_tag "google.png" %>
+  <% end %>
+    <% end %>
+  <% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div>
+  <div class="forgot my-3">
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name)%>
+    <% end %>
+</div>
+
+  <%= render "devise/shared/links" %>
+  </div>
+</div>
+    </div>
+
+    <div class="col-6">
+      <%= image_tag "login.png", class:"login" %>
+    </div>
+  </div>
+</div>
