@@ -1,0 +1,56 @@
+<div class="container py-5">
+  <div class="container py-5">
+    <div class="product_container py-4 row">
+      <% @products.each do |product| %>
+        <div class="col-sm-12 col-lg-6 col-xxl-4 mb-2">
+          <% unless product.stock.zero? %>
+            <div class="card-trip-product py-3">
+              <% if product.stock.to_i < 15 %>
+                <p>Últimas <%= product.stock %> Unds.</p>
+              <% end %>
+              <% product.photos.last(1).each do |photo| %>
+                <%= link_to product_path(product) do %>
+                  <%= cl_image_tag photo.key, crop: :pad, class: "imagen-index" %>
+                <% end %>
+              <% end %>
+              <div class="card-trip-infos mx-3">
+                <div>
+                  <h2> <%= number_to_currency(product.old_price) %></h2>
+                  <h3> <%= number_to_currency(product.price) %></h3>
+                  <h4><%= product.name.truncate(40) %> </h4>
+                    <% if product.expiration_date.present? %>
+                      <h5>Vencimiento: <%= product.expiration_date %></h5>
+                    <% else %>
+                      <h5><br></h5>
+                    <% end %>
+                </div>
+                <h6 class="badge rounded-pill h1"> -<%= product.discount %>% </h6>
+              </div>
+              <div class="text-center pb-3">
+                <% if user_signed_in? && current_user.id == product.user_id %>
+                  <%= link_to "Editar", edit_product_path(product), class: "btn btn-ghost" %>
+                  <%= link_to "Eliminar", product_path(product), class: "btn btn-ghost", data:
+                  {turbo_method: :delete, turbo_confirm: "¿Estás seguro de eliminar el producto?"} %>
+                <% else %>
+                  <% if product.stock.to_i > 0 %>
+                      <%= form_tag line_items_path do %>
+                        <%= hidden_field_tag 'product_id', product.id %>
+                        <%= hidden_field_tag 'current_cart_id', @current_cart.id %>
+                        <%= submit_tag 'Agregar', class: "btn btn-ghost" %>
+                      <% end %>
+                  <% else %>
+                      <%= link_to "Ver otros productos", root_path, class: "btn btn-ghost" %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="container text-center py-2">
+      <h4 class="py-4">¿Quieres vender tus productos con nosotros?</h4>
+      <%= link_to "¡Sí!", new_product_path, class: "btn btn-ghost" %>
+    </div>
+  </div>
+</div>
