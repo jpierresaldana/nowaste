@@ -11,11 +11,11 @@ class Product < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_products, against: %i[name description],
-    using: {
-        tsearch: {
-          prefix: true
-          }
-      }
+  using: {
+    tsearch: {
+      prefix: true
+    }
+  }
 
   # ESTO ES LO QUE ROMPE TODO:
   # validar que todos lo campos no esten vacios al crear

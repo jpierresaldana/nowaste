@@ -1,0 +1,59 @@
+<div class="container py-5">
+  <div class="container py-5">
+    <div class="container-carrito">
+      <div class="row">
+        <div class="col-12 mx-3">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="Shopping-Cart text-center"> <strong> Carrito de Compra </strong></h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% @cart.line_items.each do |line_item| %>
+            <div class="col-12 col-lg-3">
+              <%= cl_image_tag line_item.product.photos.last.key, crop: :fill, class: "image-box" %>
+            </div>
+            <div class="col-12 col-lg-6">
+              <h3 class="text-left pt-5"> <%= line_item.product.name %> </h3>
+            </div>
+            <div class="col-12 col-lg-2">
+              <div class="d-flex flex-box justify-content-between pt-4">
+
+                    <%= link_to " - ", line_item_reduce_path(line_item) %>
+                    <h5> <%= line_item.quantity %> </h5>
+                    <%= link_to " + ", line_item_add_path(line_item) %>
+
+                    <h4> <%= number_to_currency(line_item.product.price) %> </h4>
+
+              </div><br>
+              <%= link_to "Remover elemento", line_item_erase_path(line_item),
+              data: { turbo_method: :delete, turbo_confirm: "¿Deseas eliminar este item?" } %>
+            </div>
+            <div class="">
+        <hr class="mx-3 w-100">
+            </div><br>
+          <% end %>
+        </div>
+        <div class="row">
+          <div class="col-9">
+          </div>
+          <div class="col-3">
+            <div class="d-flex justify-content-center">
+              <h4>  <%= number_to_currency(@cart.sub_total) %> </h4>
+            </div>
+            <div class="d-flex justify-content-center">
+              <h4> <%= @cart.sum_total %> items </h4>
+            </div> <br>
+            <div class="d-flex justify-content-left">
+            <% if @cart.sub_total > 0 %>
+              <%= link_to "Comprar", new_order_path, class: "btn btn-ghost w-100 " %>
+            <% else %>
+              <%= link_to "Comprar", products_path, class: "btn btn-ghost w-100 " %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
