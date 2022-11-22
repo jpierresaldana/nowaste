@@ -10,7 +10,6 @@ puts "--------------------------------------------------------------------------
 
 require "open-uri"
 
-
 puts "------------------------------------------------------------------------------------------------"
 puts "USUARIOS"
 puts "------------------------------------------------------------------------------------------------"
@@ -572,3 +571,71 @@ product110.save
 puts "producto = Product 6 - category 6 creado"
 
 puts "------------------------------------------------------------------------------------------------"
+puts "ORDENES"
+
+puts "------------------------------------------------------------------------------------------------"
+puts "creando Order 1"
+Order.create!(
+  first_name: "Raul", last_name: "Rivera", dni: "10567810", address: "Esteban tuerten 360",
+  city: "San juan de miraflores", email: "raulrivera@gmail.com", delivery_date: "2022/10/12"
+)
+puts "Order 1 creada"
+
+puts "creando Order 2"
+Order.create!(
+  first_name: "Andres", last_name: "Fonseca", dni: "23452345", address: "Av Proceres 1045",
+  city: "Surco", email: "afonseca@gmail.com", delivery_date: "2022/10/02"
+)
+puts "Order 2 creada"
+
+puts "creando Order 3"
+Order.create!(
+  first_name: "Jonathan", last_name: "Black", dni: "45342312", address: "Dos de mayo 645",
+  city: "San Isidro", email: "joblack@gmail.com", delivery_date: "2022/09/10"
+)
+puts "Order 3 creada"
+
+puts "creando Order 4"
+Order.create!(
+  first_name: "Fernanda", last_name: "Velarde", dni: "76556776", address: "Av. El Golf 755",
+  city: "surco", email: "fernandav@gmail.com", delivery_date: "2022/01/15"
+)
+puts "Order 4 creada"
+
+puts "creando Order 5"
+Order.create!(
+  first_name: "Florencia", last_name: "Jimenez", dni: "64547235", address: "Los alamos 645",
+  city: "San Isidro", email: "joblack@gmail.com", delivery_date: "2022/09/10"
+)
+puts "Order 5 creada"
+
+puts "creando Order 6"
+Order.create!(
+  first_name: "Carmen", last_name: "Smith", dni: "68785940", address: "Huamanga 423",
+  city: "Magdalena", email: "carsmith@gmail.com", delivery_date: "2022/10/10"
+)
+puts "Order 6 creada"
+
+puts "creando Order 7"
+orden1 = Order.create!(
+  first_name: "Demian", last_name: "Santos", dni: "76545678", address: "Av Argentina 3549",
+  city: "Callao", email: "Santos_demian@gmail.com", delivery_date: "2022/09/13"
+)
+puts "Order 7 creada"
+puts "------------------------------------------------------------------------------------------------"
+
+# puts "LINE-ITEMS"
+
+# puts "------------------------------------------------------------------------------------------------"
+# puts "Line-Item 1"
+# LineItem.create!(product_id: product110.id, order_id: orden1.id, quantity: 1, price: 40.00)
+# puts "Line-Item 1 creada"
+# puts "Line-Item 2"
+# LineItem.create!(product_id: product109.id, order_id: orden1.id, quantity: 2, price: 40.00)
+# puts "Line-Item 2 creada"
+# puts "Line-Item 3"
+# LineItem.create!(product_id: product108.id, order_id: orden1.id, quantity: 1, price: 40.00)
+# puts "Line-Item 3 creada"
+
+puts "------------------------------------------------------------------------------------------------"
+puts "Seed ejecutado correctamente"

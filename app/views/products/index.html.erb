@@ -15,7 +15,7 @@
               <% end %>
               <div class="card-trip-infos mx-3">
                 <div>
-                  <h2> <%= number_to_currency(product.original_price) %></h2>
+                  <h2> <%= number_to_currency(product.old_price) %></h2>
                   <h3> <%= number_to_currency(product.price) %></h3>
                   <h4><%= product.name.truncate(40) %> </h4>
                     <% if product.expiration_date.present? %>
