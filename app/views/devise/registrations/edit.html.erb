@@ -1,101 +1,72 @@
-<a href="#" class="nav-toggle">
-</a>
-
-<%= image_tag "new.png", class:"page-background" %>
-
-<div class="slides" data-slides-role="slides">
-    <section class="slide" data-slides-role="slide">
-
-    </section>
-
-    <section class="slide" data-slides-role="slide">
-
-    </section>
-
-    <section class="slide" data-slides-role="slide">
-
-    </section>
-
-    <section class="slide" data-slides-role="slide">
-        <div class="slide-slide" data-slides-role="slide-horizonzal">
-
-        </div>
-
-        <div class="slide-slide" data-slides-role="slide-horizonzal">
-
-        </div>
-
-        <div class="slide-slide" data-slides-role="slide-horizonzal">
-
-        </div>
-    </section>
-
-    <section class="slide" data-slides-role="slide">
-
-    </section>
-
-    <section
-        class="slide slide--scroll lazyload"
-        data-slides-role="slide"
-        data-bgset="https://images.unsplash.com/photo-1536882240095-0379873feb4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
-        data-sizes="auto">
-        <div class="slide-content">
-
-
-
-    <div class="container container-padding py-5">
-    <h1 class="my-4 text-center">Bienvenido a <strong>Zero Waste</strong></h2>
-
-<div class="row">
-  <div class="col-5 mx-5">
-
-    <h2>Regístrate:</h2>
-
-  <div class="py-3 text-center">
-    <%- if devise_mapping.omniauthable? %>
-      <%- resource_class.omniauth_providers.each do |provider| %>
-        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "py-2 google bg-white", method: :post, data: {turbo: "false"} do %>
-            <%= image_tag "google.png" %>
-    <% end %>
-      <% end %>
-    <% end %>
-      <h5 class="pt-2 my-2 text-center">o</h5>
-  </div>
-
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-          <%= f.error_notification %>
-
-          <div class="form-inputs">
-            <%= f.input :email,label: "Correo Electrónico",
-                        required: true,
-                        autofocus: true,
-                        input_html: { autocomplete: "email" }%>
-            <%= f.input :password, label: "Contraseña",
-                        required: true,
-                        hint: ("#{@minimum_password_length} caracteres mínimos" if @minimum_password_length),
-                        input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation, label: "Confirmar contraseña",
-                        required: true,
-                        input_html: { autocomplete: "new-password" } %>
-          </div>
-
-          <div class="form-actions">
-            <%= f.button :submit, "Crear cuenta", class:"btn btn-ghost mt-2" %>
-          </div>
-        <% end %>
-
-        <%= render "devise/shared/links" %>
-
-
-    </div>
-</div>
-
-        </div>
-
+<div class="container pt-5">
+  <div class="container pt-5">
+    <div class="container pt-2">
+      <div class="container-pro-new">
+        <div class="row">
+          <div class="col-6">
+            <h1 class="text-center rounded pt-1 pb-4"><strong>Editar perfil</strong></h1>
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= f.error_notification %>
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <%= f.input :first_name, label: "Nombres", required: true,
+                input_html: { autocomplete: "first_name" } %>
+                <%= f.input :phone_number, label: "Número telefónico", required: true,
+                input_html: { autocomplete: "phone_number" } %>
+              </div>
+              <div class="col-12 col-lg-6">
+                <%= f.input :last_name, label: "Apellidos", required: true,
+                input_html: { autocomplete: "last_name" } %>
+                <%= f.input :city, label: "Ciudad", required: true,
+                input_html: { autocomplete: "city" } %>
+              </div>
+              <div class="col-12">
+                <%= f.input :address, label: "Dirección", required: true,
+                input_html: { autocomplete: "address" } %>
+              </div>
+              <div class="col-12">
+                <%= f.input :photo, label: "Foto de perfil", as: :file %>
+              </div>
+              <div class="col-12 col-lg-6">
+                <%= f.input :ruc, label: "RUC",
+                input_html: { autocomplete: "ruc" } %>
+                <!-- <%= f.input :email, required: true, autofocus: true, input_html: { disable: true } %>
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                <% end %>
+                <input type="text" id="lname" name="lname" disabled> -->
+                <%= f.input :password, label: "Nueva contraseña",
+                hint: "Deja el espacio en blanco si no deseas cambiarla", required: false,
+                input_html: { autocomplete: "new-password" } %>
+              </div>
+              <div class="col-12 col-lg-6">
+                <%= f.input :business_name, label: "Nombre comercial", input_html: { autocomplete: "business_name" } %>
+                <%= f.input :password_confirmation, label: "Confirmar nueva contraseña", required: false,
+                input_html: { autocomplete: "new-password" } %>
+              </div>
+              <div class="col-12 col-lg-6">
+                  <%= f.input :current_password, label: "Contraseña actual",
+                  hint: "Necesitamos tu contraseña actual para confirmar los cambios",required: true,
+                  input_html: { autocomplete: "current-password" } %>
+              </div>
             </div>
-        </section>
-
-        <section class="slide" data-slides-role="slide">
-
-        </section>
+            <div>
+            </div>
+            <div class="d-flex justify-content-around pt-3 pb-5">
+            <%= f.button :submit, "Actualizar", class:"btn btn-outline-dark" %>
+            <% end %>
+            <%= button_to "Cancelar mi cuenta", registration_path(resource_name),
+            data: { confirm: "¿Estás seguro?" }, method: :delete, class:"btn btn-outline-dark" %>
+            <%= link_to "Regresar", :back, class:"btn btn-outline-dark" %>
+            </div>
+          </div>
+          <div class="col-6">
+            <div>
+              <%= image_tag "pla_net.jpeg", class:"imagen-pro-edit" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div><br>
+</div><br>

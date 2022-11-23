@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
     )
   end
 
-  private
-
   def current_cart
     @current_cart = Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound

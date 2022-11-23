@@ -352,6 +352,7 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: { class: 'form-text' }
   end
 
+
   # The default wrapper to be used by the FormBuilder.
   config.default_wrapper = :vertical_form
 
