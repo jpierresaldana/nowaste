@@ -1,25 +1,101 @@
-<h2>Sign up</h2>
+<a href="#" class="nav-toggle">
+</a>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-  <%= f.error_notification %>
+<%= image_tag "new.png", class:"page-background" %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+<div class="slides" data-slides-role="slides">
+    <section class="slide" data-slides-role="slide">
+
+    </section>
+
+    <section class="slide" data-slides-role="slide">
+
+    </section>
+
+    <section class="slide" data-slides-role="slide">
+
+    </section>
+
+    <section class="slide" data-slides-role="slide">
+        <div class="slide-slide" data-slides-role="slide-horizonzal">
+
+        </div>
+
+        <div class="slide-slide" data-slides-role="slide-horizonzal">
+
+        </div>
+
+        <div class="slide-slide" data-slides-role="slide-horizonzal">
+
+        </div>
+    </section>
+
+    <section class="slide" data-slides-role="slide">
+
+    </section>
+
+    <section
+        class="slide slide--scroll lazyload"
+        data-slides-role="slide"
+        data-bgset="https://images.unsplash.com/photo-1536882240095-0379873feb4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80"
+        data-sizes="auto">
+        <div class="slide-content">
+
+
+
+    <div class="container container-padding py-5">
+    <h1 class="my-4 text-center">Bienvenido a <strong>Zero Waste</strong></h2>
+
+<div class="row">
+  <div class="col-5 mx-5">
+
+    <h2>Regístrate:</h2>
+
+  <div class="py-3 text-center">
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "py-2 google bg-white", method: :post, data: {turbo: "false"} do %>
+            <%= image_tag "google.png" %>
+    <% end %>
+      <% end %>
+    <% end %>
+      <h5 class="pt-2 my-2 text-center">o</h5>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
+          <%= f.error_notification %>
 
-<%= render "devise/shared/links" %>
+          <div class="form-inputs">
+            <%= f.input :email,label: "Correo Electrónico",
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" }%>
+            <%= f.input :password, label: "Contraseña",
+                        required: true,
+                        hint: ("#{@minimum_password_length} caracteres mínimos" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+            <%= f.input :password_confirmation, label: "Confirmar contraseña",
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Crear cuenta", class:"btn btn-ghost mt-2" %>
+          </div>
+        <% end %>
+
+        <%= render "devise/shared/links" %>
+
+
+    </div>
+</div>
+
+        </div>
+
+            </div>
+        </section>
+
+        <section class="slide" data-slides-role="slide">
+
+        </section>
+    </div>
