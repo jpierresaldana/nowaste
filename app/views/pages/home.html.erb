@@ -124,11 +124,12 @@
 
         <div class="text-center">
 
-            <%= form_tag line_items_path do %>
-              <%= hidden_field_tag 'product_id', product.id %>
-              <%= hidden_field_tag 'current_cart_id', @current_cart.id %>
-              <%= submit_tag 'Agregar', class: "btn btn-ghost" %>
-            <% end %>
+          <%= link_to "Ver más", product_path(product) , class: "btn btn-ghost" %>
+            <%#= form_tag line_items_path do %>
+              <%#= hidden_field_tag 'product_id', product.id %>
+              <%#= hidden_field_tag 'current_cart_id', @current_cart.id %>
+              <%#= submit_tag 'Ver', class: "btn btn-ghost" %>
+            <%# end %>
 
         </div>
       </div>
@@ -178,12 +179,12 @@
         </div>
 
         <div class="text-center">
-
-            <%= form_tag line_items_path do %>
-              <%= hidden_field_tag 'product_id', product.id %>
-              <%= hidden_field_tag 'current_cart_id', @current_cart.id %>
-              <%= submit_tag 'Agregar', class: "btn btn-ghost" %>
-            <% end %>
+          <%= link_to "Ver más" , class: "btn btn-ghost" %>
+            <%#= form_tag line_items_path do %>
+              <%#= hidden_field_tag 'product_id', product.id %>
+              <%#= hidden_field_tag 'current_cart_id', @current_cart.id %>
+              <%#= submit_tag 'Agregar', class: "btn btn-ghost" %>
+            <%# end %>
 
         </div>
       </div>
