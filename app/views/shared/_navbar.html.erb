@@ -21,9 +21,9 @@
           <li class= "cart", data-controller=""> <%#= AGREGUÉ la ruta del Home (root_path) y eliminé la del MENSAJE  %>
               <span class="material-symbols-outlined", id="cart_menu_num">
               <%= link_to "shopping_cart", cart_path(@current_cart), class: "nav-link" %>
-                <div class="fondo-suma">
+                <%# <div class="fondo-suma">
                   <%= @current_cart.sum_total %>
-                </div>
+                <%# </div> %>
               </span>
           </li>
         <% if user_signed_in? %>
