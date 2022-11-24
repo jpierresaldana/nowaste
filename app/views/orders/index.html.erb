@@ -1,37 +1,17 @@
-<div class="container-padding h-100">
-<div class="container">
-        <% @orders.each do |order| %>
+<div class="container-padding mt-5 h-100">
+  <div class="container mt-5">
 
-          <% order.line_items.each do |item| %>
-                  <div class="card-body pt-4">
-                    <div class="card shadow-0 border mb-4">
-                      <div class="card-body">
-                        <div class="row">
+  <br><br><br><br><br>
 
-                          <div class="col-md-3">
-                            <div class="image-dox mx-5 pt-3">
-                                <%= cl_image_tag item.product.photos.last.key, crop: :fill %>
-                            </div>
-                          </div>
+<% @orders.each do |order| %>
 
-                          <div class="col-md-3 text-left d-flex align-items-center">
-                            <p class="text-muted mb-0"><%= item.product.name %></p>
-                          </div>
+  <%= order.id %>
+  <%= order.created_at.strftime("%d-%m-%Y") %>
+  <%= order.total %>
+  <%= link_to "Ver más", order_path(order), class: "btn" %>
+  <br>
 
-                          <div class="col-md-3 text-right d-flex align-items-center">
-                            <p class="text-muted mb-0 small">Cantidad: <%= item.quantity %> </p>
-                          </div>
+<% end %>
 
-                          <div class="col-md-3 text-right d-flex align-items-center">
-                            <p class="text-muted mb-0 small"> <strong> Precio total: <%= number_to_currency(item.total_price) %> </strong> </p>
-                          </div>
-
-                        </div><br>
-
-                      </div>
-                    </div>
-                  </div>
-          <% end %>
-        <% end %>
-</div>
+  </div>
 </div>

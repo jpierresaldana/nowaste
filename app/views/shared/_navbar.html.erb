@@ -35,7 +35,7 @@
           <% end %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Editar perfil", "/users/edit", class: "dropdown-item" %>
-              <%= link_to "Mis pedidos", order_path(current_user), class: "dropdown-item" %>
+              <%= link_to "Mis pedidos", orders_path, class: "dropdown-item" %>
               <%= link_to "Salir", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
