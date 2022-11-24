@@ -21,8 +21,6 @@ class LineItemsController < ApplicationController
     @line_item.quantity += 1
     @line_item.save
     product = Product.find(params[:id])
-    puts "---------------------------------------------"
-    puts product
     product.stock -= 1
     product.save
     redirect_to cart_path(@line_item.cart_id)
@@ -42,6 +40,6 @@ class LineItemsController < ApplicationController
   private
 
   def line_item_params
-    params.require(:line_item).permit(:quantity,:product_id, :cart_id)
+    params.require(:line_item).permit(:quantity, :product_id, :cart_id)
   end
 end
