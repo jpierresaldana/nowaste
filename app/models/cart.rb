@@ -10,7 +10,7 @@ class Cart < ApplicationRecord
     return sum
   end
 
-  def sum_total
+  def sum_totald
     sum = 0
     self.line_items.each do |line_item|
       sum += line_item.total_items unless line_item.product_id.nil?
