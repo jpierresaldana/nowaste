@@ -1,17 +1,36 @@
-<div class="container-padding mt-5 h-100">
-  <div class="container mt-5">
-
-  <br><br><br><br><br>
-
-<% @orders.each do |order| %>
-
-  <%= order.id %>
-  <%= order.created_at.strftime("%d-%m-%Y") %>
-  <%= order.total %>
-  <%= link_to "Ver más", order_path(order), class: "btn" %>
-  <br>
-
-<% end %>
-
+<div class="container py-5">
+  <div class="container py-5">
+    <div class="container-carrito">
+      <div class="row">
+        <div class="col-12 mx-3">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="Shopping-Cart text-center"> <strong> Lista de compras </strong></h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <% @orders.each do |order| %>
+            <div class="col-12 col-lg-4 align-self-center">
+              <div class="mx-5">
+                <strong> Fecha compra: <%= order.created_at.strftime("%d-%m-%Y") %> </strong>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3 align-self-center">
+              <div class="mx-5">
+                <strong> Precio total: <%= number_to_currency(order.total) %> </strong>
+              </div>
+            </div>
+            <div class="col-12 col-lg-4 text-center">
+              <div class="mx-5">
+                <%= link_to "Ver más", order_path(order), class: "btn btn-ghost" %>
+              </div>
+            </div>
+            <div class="pt-2">
+            </div><br>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
